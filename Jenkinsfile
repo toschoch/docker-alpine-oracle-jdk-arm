@@ -23,7 +23,8 @@ def isTag() {
     }
     return false
 }
-pipeline {
+
+node('docker') {
     stages {
         stage('Checkout') {
             checkout scm
