@@ -39,7 +39,7 @@ node('docker') {
     }
 
     stage('Push Image') {
-        docker.withRegistry('registry.hub.docker.io','docker public') {
+        docker.withRegistry('https://.docker.io','docker public') {
             builtImage.push()
         }
     }
