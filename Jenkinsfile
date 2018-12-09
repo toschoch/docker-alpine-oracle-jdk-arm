@@ -39,7 +39,7 @@ node('docker') {
     }
 
     stage('Push Image') {
-        docker.withRegistry('https://index.docker.io/v1','docker public') {
+        docker.withRegistry('https://index.docker.io/v2','docker public') {
             withCredentials([
                 usernamePassword(credentialsId: 'docker public', 
                 usernameVariable: 'USERNAME', 
