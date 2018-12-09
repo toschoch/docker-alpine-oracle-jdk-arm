@@ -39,7 +39,6 @@ node('docker') {
     }
 
     stage('Push Image') {
-        when { tag "release-*" }
         docker.withRegistry('https://hub.docker.com/','docker public') {
             builtImage.push()
         }
