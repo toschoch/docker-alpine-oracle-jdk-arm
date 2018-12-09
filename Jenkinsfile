@@ -25,25 +25,23 @@ def isTag() {
 }
 
 node('docker') {
-    stages {
-        stage('Checkout') {
-            checkout scm
+    stage('Checkout') {
+        checkout scm
+    }
+    
+    stage('Build Image') {
+        withCredentials([
+            usernamePassword(credentialsId: 'docker public', 
+            usernameVariable: 'USERNAME', 
+            passwordVariable: 'PASSWORD')]) {
+            def builtImage = docker.build("${USERNAME}/docker-alpine-oracle-jdk-arm")
         }
-        
-        stage('Build Image') {
-            withCredentials([
-                usernamePassword(credentialsId: 'docker public', 
-                usernameVariable: 'USERNAME', 
-                passwordVariable: 'PASSWORD')]) {
-                def builtImage = docker.build("${USERNAME}/docker-alpine-oracle-jdk-arm")
-            }
-        }
+    }
 
-        stage('Push Image') {
-            when { tag "release-*" }
-            docker.withRegistry('https://hub.docker.com/','docker public') {
-                builtImage.push()
-            }
+    stage('Push Image') {
+        when { tag "release-*" }
+        docker.withRegistry('https://hub.docker.com/','docker public') {
+            builtImage.push()
         }
     }
 }
