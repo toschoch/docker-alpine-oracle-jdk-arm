@@ -39,9 +39,14 @@ node('docker') {
     }
 
     stage('Push Image') {
-        docker.withRegistry('https://docker.io','docker public') {
-            def builtImage = docker.build("shocki/docker-alpine-oracle-jdk-arm",".")
-            builtImage.push()
+        docker.withRegistry('https://index.docker.io/v1','docker public') {
+            withCredentials([
+                usernamePassword(credentialsId: 'docker public', 
+                usernameVariable: 'USERNAME', 
+                passwordVariable: 'PASSWORD')]) {
+                    def builtImage = docker.build("${USERNAME}/docker-alpine-oracle-jdk-arm",".")
+                    builtImage.push()
+                }
         }
     }
 }
