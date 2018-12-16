@@ -34,7 +34,7 @@ node('docker') {
             usernamePassword(credentialsId: 'docker public', 
             usernameVariable: 'USERNAME', 
             passwordVariable: 'PASSWORD')]) {
-            def builtImage = docker.build("${USERNAME}/docker-alpine-oracle-jdk-arm",".")
+            def builtImage = docker.build("${USERNAME}/alpine-oracle-jdk-arm",".")
         }
     }
 
@@ -44,7 +44,7 @@ node('docker') {
                 usernamePassword(credentialsId: 'docker public', 
                 usernameVariable: 'USERNAME', 
                 passwordVariable: 'PASSWORD')]) {
-                    def builtImage = docker.build("${USERNAME}/docker-alpine-oracle-jdk-arm",".")
+                    def builtImage = docker.build("${USERNAME}/alpine-oracle-jdk-arm",".")
                     builtImage.push()
                 }
         }

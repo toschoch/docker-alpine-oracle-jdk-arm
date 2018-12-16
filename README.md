@@ -23,7 +23,7 @@ git clone git@github.com:toschoch/docker-alpine-oracle-jdk-arm.git
 ```
 build the docker image
 ```
-docker build . -t docker-alpine-oracle-jdk-arm
+docker build . -t alpine-oracle-jdk-arm
 ```
 
 Example
@@ -31,5 +31,5 @@ Example
 
 run a container of the image
 ```
-docker run -v ... -p ... docker-alpine-oracle-jdk-arm
+docker run -v ... -p ... alpine-oracle-jdk-arm
 ```
