@@ -10,6 +10,10 @@ A alpine image for arm with oracle jvm v8
 
 Change-Log
 ----------
+##### 1.0.0
+* fix build script
+* removed redundante docker- from image name
+
 ##### 0.0.1
 * initial version
 
